@@ -29,4 +29,6 @@ These style guides are licensed under the CC-By 3.0 License, which encourages
 you to share these documents. See http://creativecommons.org/licenses/by/3.0/
 for more details.
 
+JAVA - https://echoboxapp.github.io/styleguide/javaguide.html
+
 <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/88x31.png" /></a>
