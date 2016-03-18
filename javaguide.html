@@ -76,7 +76,10 @@
 <a href="#s3.4.1-one-top-level-class">3.4.1 Exactly one top-level class declaration</a>
 </dd>
 <dd class="toc3">
-<a href="#s3.4.2-class-member-ordering">3.4.2 Class member ordering</a>
+<a href="#s3.4.2-class-structure">3.4.2 Class structure</a>
+</dd>
+<dd class="toc3">
+<a href="#s3.4.3-class-member-ordering">3.4.3 Class member ordering</a>
 </dd>
 </dl>
 </td><td>
@@ -213,6 +216,9 @@
 <dd>
 <a href="#s6.4-finalizers">6.4 Finalizers: not used</a>
 </dd>
+<dd>
+<a href="#s6.5-logging-levels">6.5 Logging Levels</a>
+</dd>
 <br>
 <dt class="toc1">
 <a href="#s7-javadoc">7 Javadoc</a>
@@ -325,15 +331,17 @@ ASCII sort order; the presence of semicolons warps the result.)</p><a name="s3.4
     <h3>3.4 Class declaration&nbsp;<a href="#s3.4-class-declaration"><img height="21" width="21" src="javaguidelink.png"/></a></h3>
     <a name="oneclassperfile"/><a name="s3.4.1-one-top-level-class"/>
     <h4>3.4.1 Exactly one top-level class declaration&nbsp;<a href="#s3.4.1-one-top-level-class"><img height="21" width="21" src="javaguidelink.png"/></a></h4>
-    <p>Each top-level class resides in a source file of its own.</p><a name="s3.4.2-class-member-ordering"/>
-    <h4>3.4.2 Class member ordering&nbsp;<a href="#s3.4.2-class-member-ordering"><img height="21" width="21" src="javaguidelink.png"/></a></h4>
+    <p>Each top-level class resides in a source file of its own.</p><a name="s3.4.2-class-structure"/>
+    <h4>3.4.2 Class Structure&nbsp;<a href="#s3.4.2-class-structure"><img height="21" width="21" src="javaguidelink.png"/></a></h4>
+    <p>The structure of a class MUST be logical, this means that, excluding very limited exceptions, similar things should be grouped together, e.g. fields, constructors, getters/setters, static members, instance members etc.</p><a name="s3.4.3-class-member-ordering"/>
+    <h4>3.4.3 Class member ordering&nbsp;<a href="#s3.4.3-class-member-ordering"><img height="21" width="21" src="javaguidelink.png"/></a></h4>
     <p>The ordering of the members of a class can have a great effect on learnability, but there is
 no single correct recipe for how to do it. Different classes may order their members
 differently.</p><p>What is important is that each class order its members in <strong><em>some</em> logical
 order</strong>, which its maintainer could explain if asked. For example, new methods are not
 just habitually added to the end of the class, as that would yield "chronological by date
-added" ordering, which is not a logical ordering.</p><a name="overloads"/><a name="s3.4.2.1-overloads-never-split"/>
-    <h5>3.4.2.1 Overloads: never split&nbsp;<a href="#s3.4.2.1-overloads-never-split"><img height="21" width="21" src="javaguidelink.png"/></a></h5>
+added" ordering, which is not a logical ordering.</p><a name="overloads"/><a name="s3.4.3.1-overloads-never-split"/>
+    <h5>3.4.3.1 Overloads: never split&nbsp;<a href="#s3.4.3.1-overloads-never-split"><img height="21" width="21" src="javaguidelink.png"/></a></h5>
     <p>When a class has multiple constructors, or multiple methods with the same name, these appear
 sequentially, with no intervening members.</p><a name="s4-formatting"/>
     <h2>4 Formatting&nbsp;<a href="#s4-formatting"><img height="21" width="21" src="javaguidelink.png"/></a></h2>
@@ -730,7 +738,16 @@ Foo.aStaticMethod(); // good
     <h3>6.4 Finalizers: not used&nbsp;<a href="#s6.4-finalizers"><img height="21" width="21" src="javaguidelink.png"/></a></h3>
     <p>It is <strong>extremely rare</strong> to override <code class="prettyprint lang-java">Object.finalize</code>.</p><p class="tip"><strong>Tip:</strong> Don't do it. If you absolutely must, first read and understand
 <a href="http://books.google.com/books?isbn=8131726592"><em>Effective Java</em></a>
-Item 7, "Avoid Finalizers," very carefully, and <em>then</em> don't do it.</p><a name="javadoc"/><a name="s7-javadoc"/>
+Item 7, "Avoid Finalizers," very carefully, and <em>then</em> don't do it.</p><a name="javadoc"/><a name="s7-javadoc"/><a name="s6.5-logging-levels">
+	<h3>6.5 Logging Levels&nbsp;<a href="#s6.5-logging-levels"><img height="21" width="21" src="javaguidelink.png"/></a></h3>
+	<p>The <i>level</i> of a logging statement should tell you something about the amount of attention that such a statement requires. Logging information should NOT span multiple logging events, i.e. logger.debug("hello"); logger.debug("world");</p>
+		<ul>
+		<li>Trace - Should primarily be used for testing and development purposes when verbose information is helpful.</li>
+		<li>Debug - The lowest level of debugging that is recorded in production. Ensure you do not produce VAST quantities of debug events and also that data is not duplicated.</li>
+		<li>Info - This is a level reserved for processes that exist at the highest level of abstraction. If you produce more than one INFO logging event per 5 minutes you should probably be using DEBUG instead.</li>
+		<li>Warn - Corresponds with EXPECTED events. Warnings will typically be the first thing investigated if something appears to be incorrect in the application.</li>
+		<li>Error - An UNEXPECTED event that should be investigated and most likely followed by a BUG ticket.</li>
+		</ul>
     <h2>7 Javadoc&nbsp;<a href="#s7-javadoc"><img height="21" width="21" src="javaguidelink.png"/></a></h2>
     <a name="s7.1-javadoc-formatting"/>
     <h3>7.1 Formatting&nbsp;<a href="#s7.1-javadoc-formatting"><img height="21" width="21" src="javaguidelink.png"/></a></h3>
