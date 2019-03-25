@@ -8,7 +8,9 @@ See README.md for details.
 
 **note:** this file replaces pyguide.html and is based extensively on the Google Python Style Guide
 
-To install 
+Installing of tools
+------------------- 
+
 ````
 pip install pylint 
 ````
