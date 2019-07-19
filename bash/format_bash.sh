@@ -49,7 +49,7 @@ main() {
   echo "=========================================================="
   echo "== running shfmt"
   echo "=========================================================="
-  shfmt -l -ln bash -i 2 -ci -kp -w "${script_to_check}" > "${shfmt_file}"
+  shfmt -l -ln bash -i 2 -d -ci -kp -w "${script_to_check}" > "${shfmt_file}"
   cat "${shfmt_file}"
   echo "=========================================================="
   echo "== running shellcheck"
